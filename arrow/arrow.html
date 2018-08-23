@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Arrow</title>
+  <script>
+    // Before ES6 (traditional form)
+    var x = function(a) {
+      return a;
+    }
+    console.log(x('traditional Hi!'));
+
+    // With ES6 B|
+    const xES6 = a => a; // xES6 is only a variable name
+    console.log(xES6('Hi! with arrow function!'))
+
+    // ES6 with more than one parameter
+    const xyES6 = (a,b) => `${a} ${b}`;
+    console.log(xyES6('Hi!', 'ES6'))
+
+    // without parameters
+    const zES6 = () => 'nothing';
+    console.log(zES6());
+
+    // function call from other function
+    const functionA = (() => console.log('the parentheses are the fuctionB'));
+    functionA();
+
+    // more than one instruction
+    const instruction = () => {
+      const a = 1;
+      const b = 2;
+      const c = a + b;
+      console.log(c);
+    }
+    instruction();
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
