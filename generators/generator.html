@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Generator ES6</title>
+  <link rel="stylesheet" href="/css/editor.css">
+  <script>
+    // typical function with return
+    function withReturn(a) {
+      let b = 5;
+      return a + b;
+      b = 6; // we will never re-assing b
+      return a * b; // and will never return new value
+    }
+    console.log(`return: ${withReturn(6)}`); // 11
+    console.log(`return: ${withReturn(6)}`); // 11
+
+    // generating function and yield
+    function* withYield(a) {
+      let b = 5;
+      yield a + b; // yield 1
+      b = 6; // it will be re-assigned after first execution
+      yield a * b; // yield 2
+    }
+    const c = withYield(6);
+    console.log(`yield 1: value: ${c.next().value} done: ${c.next().done}`); // 11
+    console.log(`yield 2: value: ${c.next().value} done: ${c.next().done}`); // 36
+    console.log(`other next: value: ${c.next().value} done: ${c.next().done}`); // object state
+
+    // Yield delegator
+    function* anotherGenerator(i) {
+      yield i + 1;
+      yield i + 2;
+      yield i + 3;
+    }
+
+    function* generator(i) {
+      yield* anotherGenerator(i);
+    }
+
+    const gen = generator(1);
+    console.log(gen.next().value); // 2
+    console.log(gen.next().value); // 3
+    console.log(gen.next().value); // 4
+
+    // wtf? if you do not know the number of iterations
+    // solution: infinite loop
+    function* randomFrom(...arr) {
+      while (true)
+        yield arr[Math.floor(Math.random() * arr.length)];
+    }
+    const getRandom = randomFrom(1, 2, 5, 9, 4);
+    console.log(getRandom.next().value);
+
+    // same but more complex (trottle)
+    function* throttle(func, time) {
+      let timerID = null;
+      function throttled(arg) {
+        clearTimeout(timerID);
+        timerID = setTimeout(func.bind(window, arg), time);
+      }
+      while (true)
+        throttled(yield)
+    }
+
+    const thr = throttle(console.log, 1000);
+    console.log(thr.next()); // {value: undefined, done: false}
+    console.log(thr.next('hello')); // {value: undefined, done: false} + 1s after -> 'hello'
+
+    // Fibonacci
+    function* fibonacci(seed1, seed2) {
+      while(true) {
+        yield(() => {
+          seed2 = seed2 + seed1;
+          seed1 = seed2 - seed1;
+          return seed2;
+        })();
+      }
+    }
+
+    const fib = fibonacci(0,1);
+    console.log(fib.next()); // {value: 1, done: false}
+    console.log(fib.next()); // {value: 2, done: false}
+    console.log(fib.next()); // {value: 3, done: false}
+    console.log(fib.next()); // {value: 5, done: false}
+    console.log(fib.next()); // {value: 8, done: false}
+    // and etc
+
+  </script>
+</head>
+<body>
+  <h1>Ways to declare a Generating function</h1>
+  <div class="editor">
+    <p>
+      <span class="function">function *</span>
+      <span class="function-name">generator</span>
+      <span class="simbol">() {}</span>
+    </p>
+    <p>
+      <span class="function">function*</span>
+      <span class="function-name">generator</span>
+      <span class="simbol">() {}</span>
+    </p>
+    <p>
+      <span class="function">function</span>
+      <span class="function-name">*generator</span>
+      <span class="simbol">() {}</span>
+    </p>
+    <p>
+      <span class="variable">const</span>
+      <span class="function-name">generator</span>
+      <span class="function">= function *</span>
+      <span class="simbol">() {}</span>
+    </p>
+    <p>
+      <span class="variable">const</span>
+      <span class="function-name">generator</span>
+      <span class="function">= function*</span>
+      <span class="simbol">() {}</span>
+    </p>
+    <p>
+      <span class="variable">const</span>
+      <span class="function-name">generator</span>
+      <span class="function">= function</span>
+      <span class="simbol"> <span class="function">*</span>() {}</span>
+    </p>
+  </div>
+  <h4>use generating function with arrow function it's wrong</h4>
+  <h2>Methods</h2>
+  <h3 class="method">next()</h3>
+  <p>This is the main method that you will use most often. It gives us the next output
+  object every time we call it.
+  And when it is done, next() set the done property to true and value to undefined.</p>
+  <h3 class="method">return()</h3>
+  <p>Return() will ignore any code in the generator function that you have. But will
+  set the value based on a passed argument and set done to be true.
+  Any calls next() after return() will return done-object.  </p>
+</body>
+</html>

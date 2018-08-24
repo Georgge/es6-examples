@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Default values</title>
+  <script>
+    // ES5
+    function multiply(a, b){
+      b = typeof b !== 'undefined' ? b : 1;
+      return a * b;
+    }
+    console.log(multiply(5)); // 5
+    console.log(multiply(5, 5)); // 25
+
+    // ES6
+    function multiplyES6(a, b = 1) {
+      return a*b;
+    }
+    console.log(multiplyES6(5)); // 5
+    console.log(multiplyES6(5, 5)); // 25
+
+    // default values in arguments and primitives
+    // passing primitives types
+    function f (x, y=7, z=42) {
+      return x + y + z;
+    }
+    console.log(f(1)); // 50
+
+    // array
+    function add(value, array = []) {
+      array.push(value);
+      return array;
+    }
+    console.log(add(1)); // [1]
+    console.log(add(2)); // [2], not [1, 2]
+
+    //
+    // default function
+    function callSome(thing = something()) {
+      return thing;
+    }
+
+    function something() {
+      return 'it is ok'
+    }
+    console.log(callSome());
+  </script>
+</head>
+<body>
+</body>
+</html>
