@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Template Literal</title>
+  <script>
+    // typical way of making strings
+    const str1 = 'hello world';
+    const str2 = "hello world";
+
+    console.log(str1);
+    console.log(str2);
+
+    // template literal
+    const str3 = `hello world`; // with back-ticiks
+
+    console.log(str3);
+
+    //// concatenation
+    // ES5
+    const p = {
+      name: 'Batman',
+      nn: 'Bruce'
+    }
+
+    console.log('hi, I\'m ' + p.name + ' but call me ' + p.nn + '.') // concatenation
+
+    // Now, with ES6 and templete literal
+    console.log(`hi, I'm ${p.name} but call me ${p.nn}.`);
+
+    // JavaScript into concatenation
+    console.log('Three plus six is ' + (3 + 6) + '.'); // ES5
+    console.log(`Three plus six is ${3 + 6}.`); // ES6
+
+    //// Line Breaks
+    // ES5
+    console.log("Dear Mom,\n" + 
+    "Hope you are well.\n" + 
+    "\tLove, your son");
+
+    // ES6
+    console.log(`Dear Mom,
+    Hope you are well.
+      Love, your son`);
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
