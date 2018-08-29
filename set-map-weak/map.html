@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Map</title>
+  <script>
+    /**
+    * Maps are a store for key / value pairs.
+    * Key and value could be a primitives or object references.
+    **/
+
+    const map = new Map();
+    const val2 = 'val2'
+    const val3 = {
+        key: 'value'
+      }
+    
+    map.set(0, 'val1');
+    map.set('1', val2);
+    map.set({key: 2}, val3);
+
+    console.log(map);
+
+    /**
+    * We can also use a constructor to create the same map,
+    * based on array param passed to the constructor:
+    **/
+
+    let map2;
+    const valX2 = 'val2';
+    const valX3 = {
+      key: 'value'
+    };
+
+    map2 = new Map([[0, 'val1'], ['1', valX2], [{key: 2}, valX3]]);
+    console.log(map2);
+
+    // To get a value by using a key, we have to use a get() method to do it 
+    console.log(map2.get('1')); // val2
+
+    /**
+    * To iterate over the map collection,
+    * we can use built-in forEach method or use new for..of structure
+    **/
+
+    map2.forEach((value, key) => {
+      console.log(`Key: ${key} has value: ${value}`);
+      // Key: 0 has value: val1
+      // Key: 1 has value: val2
+      // Key: [object Object] has value: [object Object] 
+    });
+
+    /**
+    * To check if value is stored in our map, we can use has() method
+    **/
+
+    console.log(map2.has(0));     // true
+    console.log(map2.has('key')); // false
+
+    /**
+    * To delte entry, we have delete() method
+    * map size is not with length is with size
+    * and to clear collection, we use clear()
+    **/
+
+    console.log(map2.size); // 3
+    map2.delete('1');
+    console.log(map2.size); // 2
+
+    map2.clear()
+    console.log(map2.size); // 0
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
