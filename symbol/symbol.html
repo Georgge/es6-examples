@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Symbol</title>
+  <script>
+    // Good
+    const mySymbol = Symbol();
+
+    // Bad
+    // const myWrong = new Symbol();
+
+    //// Symbols have description
+    //mySymbol variable now holds a "symbol" unique value
+    //its description is "some text"
+    const mySymbolX = Symbol('some text');
+
+    //// Symbols are unique
+    const mySymbol1 = Symbol('some text');
+    const mySymbol2 = Symbol('some text');
+    console.log(mySymbol1 == mySymbol2); // false
+
+    //// Symbols behave like a singleton if we use “Symbol.for” method
+    const mySymbol1 = Symbol.for('some key'); //creates a new symbol
+    const mySymbol2 = Symbol.for('some key'); // **returns the same symbol
+    console.log(mySymbol1 == mySymbol2); //true     
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
