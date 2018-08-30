@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Weak</title>
+  <script>
+    //// WeakMap
+    /**
+    * WeakMaps provides leak-free object keyed side tables.
+    * It’s a Map that doesn’t prevent its keys from being
+    * garbage-collected. We don’t have to worry about memory leaks.
+    * Keys must be objects.
+    **/
+
+    /**
+    * It has almost the same API like a Map, but we can’t iterate
+    * over the WeakMap collection. We can’t even determine the
+    * length of the collection because we don’t have size attribute here
+    **/
+
+    const wm = new WeakMap();
+    const obj = {
+      key1: {
+        k: 'v1',
+      },
+      key2: {
+        k: 'v2',
+      }
+    };
+
+    wm.set(obj.key1, 'val1');
+    wm.set(obj.key2, 'val2');
+
+    console.log(wm); // WeakMap {Object {k: 'v1'} => 'val1', Object {k: 'v2'} => 'val2'}
+
+    console.log(wm.has(obj.key1)); // true
+
+    delete obj.key1;
+
+    console.log(wm.has(obj.key1)); // false
+
+    //// WeakSet
+    /**
+    * Like a WeakMap, WeakSet is a Seat that doesn’t prevent its
+    * values from being garbage-collected. It has simpler API
+    * than WeakMap, because has only three methods:
+    * add(), has(), delete()
+    **/
+
+    const ws = new WeakSet();
+    const obj2 = {
+      key1: {
+        k: 'v1'
+      },
+      key2: {
+        k: 'v2'
+      }
+    };
+
+    ws.add(obj2.key1);
+    ws.add(obj2.key2);
+
+    console.log(ws); // WeakSet {Object {k: 'v1'}, Object {k: 'v2'}}
+
+    console.log(ws.has(obj2.key1)); // true
+
+    delete obj2.key1;
+
+    console.log(ws.has(obj2.key1)); // false
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
