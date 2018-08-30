@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Destructuring</title>
+  <script>
+
+    // Only an object
+    const student = {
+      name: 'Georgge',
+      age: 9,
+      scores: {
+        maths: 74,
+        english: 50,
+        science: 80,
+      }
+    };
+
+    // ES5
+    function displaySummary(student) {
+      console.log('Hi! ' + student.name); // Hi! Georgge
+      console.log('Math score ' + student.scores.maths); // Math score 74
+      console.log('English score ' + student.scores.english); // English score 50
+      console.log('Science ' + student.scores.science); // Science score 80
+    }
+
+    displaySummary(student);
+
+    /**
+    * Destructuring simply implies breaking down a complex
+    * structure into simpler parts. In JavaScript, this complex
+    * structure is usually an object or an array. With the
+    * destructuring syntax, you can extract smaller fragments
+    * from arrays and objects. Destructuring syntax can be used
+    * for variable declaration or variable assignment. You can
+    * also handle nested structures by using nested 
+    * destructuring syntax.
+    **/
+
+    // ES6 General example
+
+    function displayDestructuring({name, scores: {maths = 0, english = 0, science = 0}}) {
+      console.log(`Hi! ${name}`); // Hi! Georgge
+      console.log(`Math score ${maths}`); // Math score 74
+      console.log(`English score ${english}`); // English score 50
+      console.log(`Science score ${science}`); // Science score 80
+    }
+
+    displayDestructuring(student);
+
+    // Object destructuring
+    const people = {
+      name: 'Sebastian',
+      lastname: 'X-men',
+      country: 'Mexico',
+    }
+
+    const { name, lastname } = people; // Object destructuring
+    const { country } = people; // Object destructuring
+
+    console.log(name, lastname, country); // Sebastian X-men Mexico
+
+    // The same syntax can be used in variable assignment
+
+    let countryX = 'Captian'; // obviously it's not a country :P but is fun.
+    let nameX = 'Logan';
+    let lastnameX = 'Hero';
+
+    const peopleX = {
+      nameX: 'dead',
+      lastnameX: 'pool',
+      countryX: '¿?',
+    };
+
+    // Reassign firstname and lastname using destructuring
+    // Enclose in a pair of parentheses, since this is an assignment expression
+    ({ nameX, lastnameX } = peopleX); 
+
+    console.log(nameX, lastnameX, countryX); // dead pool captian
+
+    // Default values
+    const person = {
+      nameP: 'Patrick',
+      countryP: 'London',
+    }
+
+    const {nameP, countryP, age = 25} = person; // Assign default value to age if undefoned
+
+    console.log(`Name: ${nameP}, country: ${countryP}, age: ${age}`); 
+    // Name: Patrick, country: London, age: 25
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
