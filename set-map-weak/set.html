@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Set</title>
+  <script>
+    /**
+    * It’s a collection for unique values.
+    * The values could be also a primitives or object references.
+    **/
+
+    const set = new Set();
+
+    set.add(1);
+    set.add('1');
+    set.add({key: 'value'});
+
+    console.log(set); // Set {1, '1', Object {key: 'value'}}
+
+    /**
+    * Like a map, set allows to create collection by passing an
+    * array to its constructor:
+    * example:
+    * let set = new Set([1, '1', { key: 'value' }]);
+    **/
+
+    // Iteration
+    set.forEach((value) => {
+      console.log(value);
+    });
+
+    // we can also use for..of
+
+    /**
+    * IMPORTANT: Set doesn't allow to add duplicates
+    **/
+
+    const setX = new Set([1, 1, 1, 2, 5, 5, 6, 9]);
+    console.log(setX.size); // 5
+
+    /**
+    * We can also use:
+    * has()
+    * delete()
+    * clear()
+    * which are similar to the Map versions.
+    **/
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
