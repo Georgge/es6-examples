@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lang, Cuerrency, Date</title>
+  <script>
+    function letterSort(lang, letters) {
+      letters.sort(new Intl.Collator(lang).compare);
+      return letters;
+    }
+    
+    console.log(letterSort('de', ['a','z','ä'])); // German
+    // Array ["a", "ä", "z"]
+    
+    console.log(letterSort('sv', ['a','z','ä'])); // Swedish
+    // Array ["a", "z", "ä"]
+
+    //// Number format
+    function numberFormat(lang, numbers) {
+      nlang = new Intl.NumberFormat(lang);
+      return nlang.format(numbers);
+    }
+
+    console.log(numberFormat('en-US', 1234567.89)); // English (American)
+    // 1,234,567.89
+    console.log(numberFormat('de-DE', 1234567.89)); // German
+    // 1.234.567,89
+
+    //// Currency format
+
+    function coinFormat(lang, currency, coins) {
+      c = new Intl.NumberFormat('lang', {style: 'currency', currency});
+      return c.format(coins);
+    }
+
+    console.log(coinFormat('ja-JP', 'JPY', 100200300.40)); // ￥100,200,300.40
+    console.log(coinFormat('es-MX', 'MXN', 100200300.40)); // $100,200,300.40
+
+    //// Date Format
+
+    function dateFormat(lang, date){
+      df = new Intl.DateTimeFormat(lang);
+      return df.format(new Date(date));
+    }
+
+    console.log(dateFormat('en-US', '2018-12-2')); // 12/2/2018
+    console.log(dateFormat('es-MX', '2018-12-2')); // 2/12/2018
+    console.log(dateFormat('de-DE', '2018-12-2')); // 2.12.2018
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
