@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Spread</title>
+  <script>
+    /**
+    * The spread operator of the propagation operator allows an expression to be
+    * expanded in situations where multiple arguments are wanted (literal arrays).
+    */
+
+    //// Inserting Arrays without spread
+    const a = [3, 4];
+    const b = [1, 2, a, 5, 6];
+    console.log(b); // [1, 2, Array(2), 5, 6] || [1, 2, [3, 4], 5, 6]
+
+    // with spread
+    const c = [1, 2, ...a, 5, 6];
+    console.log(c); // [1, 2, 3, 4, 5, 6];
+
+    //// Math
+    const mathA = [2, 4, 8, 6, 0];
+    const mathB = Math.max(...mathA);
+    console.log(mathB); // 8
+
+    //// String to Array
+    const str = 'Georgge';
+    const chars = [...str];
+    console.log(chars); // ['G', 'e', 'o', 'r', 'g', 'g', 'e']
+
+    // And many possibilities
+  </script>
+</head>
+<body>
+  <h1>Spread</h1>
+</body>
+</html>
