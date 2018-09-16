@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Regular Expression Sticky (y)</title>
+  <script>
+    const str = "First line\nSecond line";
+    const regex = /(\S+) line\n?/y;
+
+    const match = regex.exec(str);
+    console.log(match);
+    console.log(regex.lastIndex); // 11
+
+    const match2 = regex.exec(str);
+    console.log(match2);
+    console.log(regex.lastIndex); // 22
+
+    const match3 = regex.exec(str);
+    console.log(match3); // null
+  </script>
+</head>
+<body>
+  <h1>Regex Sticky</h1>
+</body>
+</html>
