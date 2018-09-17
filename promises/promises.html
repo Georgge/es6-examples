@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Promises</title>
+  <script>
+    /**
+    * play with times to see success and error
+    */
+
+    // Simple promise
+    const myPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("all ok");
+      }, 5000);
+      setTimeout(() => {
+        reject("all bad");
+      }, 10000)
+    });
+
+    myPromise
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+    //// Promises in chain
+    const promiseA = msg => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(`${msg} first promise`);
+        }, 3000);
+      });
+    };
+
+    const promiseB = msg => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(`${msg} second promise`);
+        }, 3000);
+      });
+    };
+
+    const promiseC = msg => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(`${msg} last promise`);
+        }, 3000);
+      });
+    };
+
+    promiseA(':(')
+    .then((res) => {
+      console.log(res);
+      return promiseB(':|'); // return is important
+    })
+    .then((res) => {
+      console.log(res);
+      return promiseC(':)'); // return is important
+    })
+    .then((res) => {
+      console.log(res);
+    });
+
+    //// Now the same but, with a single then
+
+    const promiseD = (msg, error) => {
+      return new Promise((resolve, reject) => {
+        if (error){
+          reject(`Oops! an error ${msg}`); // an error because why not
+        } else {
+          setTimeout(() => {
+            resolve(`End! ${msg}`);
+          }, 9000);
+        }
+      });
+    }
+
+    Promise.all([
+        promiseA('⊙▂⊙'),
+        promiseB('⊙﹏⊙'),            // array promises
+        promiseC('◕｡◕'),
+        promiseD('¯ _ (ツ) _ / ¯', false) // change to true to cause an error
+      ])
+      .then((data) => {
+        console.log(data);
+        /*
+          data.forEach((msg) => {
+            console.log(msg);
+          })
+        */
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      
+  </script>
+</head>
+<body>
+  <h1>Promises</h1>
+</body>
+</html>
